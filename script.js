@@ -9,18 +9,26 @@ class Prodcuto {
   }
 }
 
+// localStorage.clear();
+
 //creo un array vacio que almacenara los objetos que se llenen en el form
 let arrayProductos = [];
+let [a, b, c, d] = arrayProductos;
 
-if (localStorage.getItem("productos")) {
-  arrayProductos = JSON.parse(localStorage.getItem("productos"));
-} else {
-  localStorage.setItem("productos", JSON.stringify(arrayProductos));
-}
+// if (localStorage.getItem("productos")) {
+//   arrayProductos = JSON.parse(localStorage.getItem("productos"));
+// } else {
+//   localStorage.setItem("productos", JSON.stringify(arrayProductos));
+// }
+
+//operador Ternario
+localStorage.getItem("productos")
+  ? (arrayProductos = JSON.parse(localStorage.getItem("productos")))
+  : localStorage.setItem("productos", JSON.stringify(arrayProductos));
 
 //creo que una variable para los 3 eventos que voy mirar
 let formProducto = document.getElementById("formProducto");
-let formCategoria = document.getElementById("formCategoria");
+// let formCategoria = document.getElementById("formCategoria");
 let botonMostrarProducto = document.getElementById("botonMostrarProducto");
 let divProductos = document.getElementById("divProductos");
 
@@ -47,7 +55,7 @@ formProducto.addEventListener("submit", (e) => {
       <p>El producto ${nombre} ya fue agregado previamente<p>
     `;
   }
-  formulario.reset();
+  formProducto.reset();
 
   // //creo un nuevo objeto
   // const producto = new Prodcuto(nombre, precio, categoria, stock);
@@ -79,3 +87,22 @@ botonMostrarProducto.addEventListener("click", () => {
     divProductos.innerHTML = "Aun no se han agregado productos";
   }
 });
+
+/* ********** */
+
+// let cantidadElementos = arrayProductos.length;
+
+// console.log(cantidadElementos);
+
+/* ********** */
+
+function desestructurame(nombre, precio, stock, categoria) {
+  console.log(nombre);
+  console.log(precio);
+  console.log(stock);
+  console.log(categoria);
+}
+
+desestructurame(arrayProductos);
+
+console.log(...arrayProductos);
